@@ -5,6 +5,8 @@
         <file>pages/SetupPin.qml</file>
         <file>pages/VerifyPin.qml</file>
         <file>pages/IncorrectPin.qml</file>
+        <file>pages/DefaultApps.qml</file>
+        <file>ui/SelectPopup.qml</file>
         <file>js/pages.js</file>
     </qresource>
 </RCC>

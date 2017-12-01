@@ -1,8 +1,12 @@
 import QtQuick 2.7
 import QtQuick.Controls 2.2
 import QtQuick.Dialogs 1.2
+import Process 1.0
 
 Rectangle {
+    
+    property var selectedLang: "en";
+    
     width: 360
     height: 360
     id: root
@@ -22,8 +26,31 @@ Rectangle {
         anchors.topMargin: 70
     }
 
-    // Button to start setup
+    // Select language popup
+    Popup {
+        id: selectLanguagePopup
+        /**
+         * Gets the XML language file and checks for all the languages, then saves it as a global.
+         */
+        Process {
+            id: getLanguagesProc
+            onFinished: function(){
+                var rawLayoutsList = (new DOMParser()).parseFromString(readAll(), "text/xml")[2].childNodes[0].childNodes; // Currently layoutList>layout>*
+                var layoutsList = {};
+                rawLayoutsList.forEach(function(langConfig){
+                    // Defining an easily readable 
+                    langConfig.configItem.name = {
+                        "displayName": langConfig.configItem.description,
+                        "variants": langConfig.variantList
+                    }
+                })
+                // TODO: Put this as buttons and use a command to set it as default language with a popup
+            }
+        }
+    }
 
+
+    // Button to start setup
     Button {
         anchors.horizontalCenter: parent.horizontalCenter
         flat: true
@@ -39,8 +66,8 @@ Rectangle {
             verticalAlignment: Text.AlignVCenter
             SequentialAnimation on color {
                 loops: Animation.Infinite
-                ColorAnimation { from: "#3daee9"; to: "#FFFFFF"; duration: 3000 }
-                ColorAnimation { from: "#FFFFFF"; to: "#3daee9"; duration: 3000 }
+                ColorAnimation { from: "#3daee9"; to: "#FFFFFF"; duration: 3000; easing.type: Easing.InOutQuad }
+                ColorAnimation { from: "#FFFFFF"; to: "#3daee9"; duration: 3000; easing.type: Easing.InOutQuad }
             }
         }        
 

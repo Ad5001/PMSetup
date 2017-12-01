@@ -21,6 +21,7 @@ Rectangle {
         anchors.top: parent.top
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.topMargin: 70
+        wrapMode: Text.WordWrap
     }
 
     // Input pin 

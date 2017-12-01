@@ -1,11 +1,12 @@
 import QtQuick 2.7
 import QtQuick.Window 2.2
 import QtQuick.Dialogs 1.2
+import QtQuick.Controls 2.2
 import Process 1.0
 import "pages" as Page
 import "js/pages.js" as PageSwitcher
 
-Window {
+ApplicationWindow {
 
     
     property string enteredPin;
@@ -37,7 +38,7 @@ Window {
             writeToStdin(mainWindow.enteredPin + "\n")
             writeToStdin(mainWindow.enteredPin + "\n")
             waitForFinished();
-            PageSwitcher.switchPage(5)
+            PageSwitcher.switchPage("defaultApps")
         }
     }
 
@@ -51,16 +52,14 @@ Window {
         onSwitchPage: function(pageId){
             processIsPinSet.start("/usr/bin/passwd", [ "--status" ], true);
             if(mainWindow.isPinSet){
-                PageSwitcher.switchPage(pageId + 3);
-                // PageSwitcher.switchPage(pageId);
+                PageSwitcher.switchPage("defaultApps");
             } else {
-                PageSwitcher.switchPage(pageId);
+                PageSwitcher.switchPage("pin");
             }
         }
     }
 
     //Pin setup related
-
     Page.SetupPin {
         anchors.fill: parent
         id: setupPinPage
@@ -68,7 +67,7 @@ Window {
         z: -1;
         onEnterPin: function(pin) {
             mainWindow.enteredPin = pin;
-            PageSwitcher.switchPage(2);
+            PageSwitcher.switchPage("pin2");
         }
         // onSwitchPage: PageSwitcher.switchPage(pageId);
     }
@@ -80,7 +79,7 @@ Window {
         z: -1;
         onEnterPin: function(pin) { //
             if(pin !== mainWindow.enteredPin){ // Wrong pin
-                PageSwitcher.switchPage(3);
+                PageSwitcher.switchPage("pin3");
             } else { // Next page
                 processSetPin.start("/usr/bin/passwd", [mainWindow.currentUsername], false);
                 processSetPin.readAll();
@@ -95,13 +94,20 @@ Window {
         z: -1;
         onEnterPin: function(pin) {
             mainWindow.enteredPin = pin;
-            PageSwitcher.switchPage(2);
+            PageSwitcher.switchPage("pin2");
         }
+    }
+    
+    Page.DefaultApps {
+        anchors.fill: parent
+        id: defaultAppsPage
+        visible: false
+        z: -1;
     }
 
 
     function startupFunction() {
-        PageSwitcher.init([startPage, setupPinPage, verifyPinPage, incorrectPinPage], startPage);
+        PageSwitcher.init({start: startPage, pin: setupPinPage, pin2: verifyPinPage, pin3: incorrectPinPage, defaultApps: defaultAppsPage}, startPage);
     }
     Component.onCompleted: startupFunction();
 }

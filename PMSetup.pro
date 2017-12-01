@@ -3,7 +3,7 @@ TEMPLATE = app
 QT += qml quick
 CONFIG += c++11
 CONFIG += console
-CONFIG+=qml_debug
+CONFIG+=qml_debug qt debug console
 
 HEADERS += process.h
 SOURCES += main.cpp 
