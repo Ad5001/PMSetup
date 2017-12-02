@@ -26,7 +26,6 @@ public:
 
     Q_INVOKABLE QByteArray readAll() {
         QByteArray text = QProcess::readAll();
-        qDebug() << text;
         return text;
     }
 

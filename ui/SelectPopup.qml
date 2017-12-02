@@ -31,15 +31,16 @@ Rectangle {
     Rectangle {
         id: realPopup
         color: "white"
-        width: parent.width * 0.75
-        height: parent.height * 0.75
+        width: title.length * 40
+        height: 20 + 75 + (root.contents.length * 45)
         anchors.top: parent.top
         anchors.left: parent.left
-        anchors.topMargin: (parent.height * 0.25) / 2;
-        anchors.leftMargin: (parent.width * 0.25) / 2;
+        anchors.topMargin: (parent.height - this.height) / 2
+        anchors.leftMargin: (parent.width - this.width) / 2
 
         // Padding
         Rectangle {
+            id: paddingPopup
             anchors.top: parent.top
             anchors.left: parent.left
             anchors.topMargin: 20
@@ -47,7 +48,9 @@ Rectangle {
 
             // Title
             Text {
+                id: popupTitle
                 width: (parent.width * 0.25) / 2 - 40
+                height: 75
                 wrapMode: Text.WordWrap
                 font.weight: Font.Thin
                 font.pixelSize: 50
@@ -58,7 +61,7 @@ Rectangle {
             Component {
                 id: buttonListShow
                 Button {
-                    width: (parent.width * 0.75) - 20
+                    width: (parent.width * 0.75) - 40
                     anchors.horizontalCenter: parent.horizontalCenter
                     font.pixelSize: 15
                     flat: true
@@ -97,7 +100,6 @@ Rectangle {
         Component.onCompleted: function(){
             root.contents.forEach(function(elem){
                 buttonsList.append({"title": elem[0], "selectionId": elem[1]})
-                console.warn("Adding elem: " + JSON.stringify(elem))
                 
             })
         }
@@ -106,11 +108,15 @@ Rectangle {
 
     // Manager
     ListView {
-        anchors.top: parent.top
-        anchors.topMargin: (parent.height * 0.25) / 2 + 95;
-        anchors.left: parent.left
-        anchors.fill: parent
+        anchors.top: realPopup.top
+        anchors.topMargin: 95
+        anchors.left: realPopup.left
+        anchors.leftMargin: -50
+        height: (root.contents.length * 45) - 30
+        width: title.length * 40 - 20
+        id: buttonListView
         model: buttonsList
         delegate: buttonListShow
+        z: 10
     }
 }

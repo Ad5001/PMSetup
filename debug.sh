@@ -1,5 +1,5 @@
-mkdir build > /dev/null
-mkdir build/Debug > /dev/null
+mkdir build 2>/dev/null
+mkdir build/Debug 2>/dev/null
 cd build/Debug 
 rm *.*
 rm *
