@@ -35,7 +35,7 @@ Rectangle {
         height: 20 + 75 + (root.contents.length * 45)
         anchors.top: parent.top
         anchors.left: parent.left
-        anchors.topMargin: (parent.height - this.height) / 2
+        anchors.topMargin: (parent.height - 64 - this.height) / 2
         anchors.leftMargin: (parent.width - this.width) / 2
 
         // Padding

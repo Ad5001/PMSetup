@@ -2,6 +2,7 @@ import QtQuick 2.7
 import QtQuick.Controls 2.2
 import QtQuick.Dialogs 1.2
 import Process 1.0
+import "qrc:/ui" as UI
 
 Rectangle {
     
@@ -27,7 +28,8 @@ Rectangle {
     }
 
     // Select language popup
-    Popup {
+    UI.SelectPopup {
+        visible: false
         id: selectLanguagePopup
         /**
          * Gets the XML language file and checks for all the languages, then saves it as a global.
@@ -51,9 +53,10 @@ Rectangle {
 
 
     // Button to start setup
-    Button {
+    UI.Button {
         anchors.horizontalCenter: parent.horizontalCenter
         flat: true
+        activateColor: "#bdc3c7"
         anchors.top: parent.top
         anchors.topMargin: parent.height - 70
         onClicked: function(){

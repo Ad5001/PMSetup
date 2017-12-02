@@ -75,27 +75,31 @@ Rectangle {
     Rectangle {
         anchors.top: parent.top
         anchors.topMargin: 160
+        anchors.left: parent.left
+        anchors.leftMargin: 20
+        anchors.horizontalCenter: parent.horizontalCenter
 
         Text {
+            anchors.left: parent.left
             text: qsTr("Web browser:")
             verticalAlignment: Text.AlignVCenter
-            height: 50
-            font.pixelSize: 30
+            height: 37
+            font.pixelSize: 18
         }
-        Button {
+        UI.Button {
             id: defaultBrowserButton
             anchors.left: parent.left
-            anchors.leftMargin: 200
-            flat: true
+            anchors.leftMargin: 120
             
             contentItem: Text {
                 verticalAlignment: Text.AlignVCenter
                 text: "Tap to choose"
-                font.pixelSize: 30
+                font.pixelSize: 18
             }
             onClicked: function(){
                 popupBrowsers.opacity = 1
             }
+            
         }
     }
 
@@ -109,7 +113,6 @@ Rectangle {
             root.browsers.forEach(function(elem){
                 if(elem[1] == selection){
                     defaultBrowserButton.contentItem.text = elem[0];
-                    // Todo, check installation and set as default browser
                 }
             })
         }
