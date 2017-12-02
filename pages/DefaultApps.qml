@@ -19,14 +19,14 @@ Rectangle {
      */
     property var browsers: [
         [
-            "Firefox Web Browser",
+            "Mozilla Firefox",
             "/usr/bin/firefox",
             "qrc:/icons/browser/firefox.svg",
             "apt",
             "firefox"
         ],
         [
-            "Chromium Web Browser",
+            "Google Chromium",
             "/usr/bin/chromium-browser",
             "qrc:/icons/browser/chromium.png",
             "apt",
@@ -54,8 +54,34 @@ Rectangle {
             "qupzilla"
         ],
     ]
+    
+    property var email_clients: [
+        [
+            "KMail",
+            "/usr/bin/kmail",
+            "qrc:/icons/email/kmail.svg",
+            "apt",
+            "kmail"
+        ],
+        [
+            "Mozilla Thunderbird",
+            "/usr/bin/thunderbird",
+            "qrc:/icons/email/thunderbird.png",
+            "apt",
+            "thunderbird"
+        ],
+        [
+            "Evolution",
+            "/usr/bin/evolution",
+            "qrc:/icons/email/evolution.svg",
+            "apt",
+            "evolution"
+        ]
+    ]
+    
 
-    property var selectedBrowser: "/usr/bin/firefox"
+    property var selectedBrowser: "/usr/bin/firefox";
+    property var selectedEmail: "/usr/bin/kmail";
     
     
 
@@ -105,7 +131,7 @@ Rectangle {
                 }
                 id: browserName
                 verticalAlignment: Text.AlignVCenter
-                text: "       Firefox Web Browser"
+                text: "       Mozilla Firefox"
                 font.pixelSize: 18
                 
             }
@@ -127,6 +153,64 @@ Rectangle {
                     browserName.text = "       " + elem[0];
                     browserIcon.source = elem[2];
                     root.selectedBrowser = elem[1];
+                }
+            })
+        }
+    }
+
+    // Default email client
+    Rectangle {
+        anchors.top: parent.top
+        anchors.topMargin: 220
+        anchors.left: parent.left
+        anchors.leftMargin: 20
+        anchors.horizontalCenter: parent.horizontalCenter
+
+        Text {
+            anchors.left: parent.left
+            text: qsTr("Email client:")
+            verticalAlignment: Text.AlignVCenter
+            height: 37
+            font.pixelSize: 18
+        }
+        UI.Button {
+            id: defaultEmailButton
+            anchors.left: parent.left
+            anchors.leftMargin: 120
+            
+            contentItem: Text {
+                Image {
+                    id: emailIcon
+                    anchors.left: parent.left
+                    anchors.leftMargin: 4
+                    source: "qrc:/icons/email/kmail.svg"
+                    sourceSize.width: 24;
+                    sourceSize.height: 24;
+                }
+                id: emailName
+                verticalAlignment: Text.AlignVCenter
+                text: "       KMail"
+                font.pixelSize: 18
+                
+            }
+            onClicked: function(){
+                popupEmail.opacity = 1
+            }
+        }
+    }
+
+    UI.SelectPopup {
+        id: popupEmail
+        title: "Email client"
+        contents: root.email_clients
+        opacity: 0
+
+        onSelected: function(selection){
+            root.email_clients.forEach(function(elem){
+                if(elem[1] == selection){
+                    emailName.text = "       " + elem[0];
+                    emailIcon.source = elem[2];
+                    root.selectedEmail = elem[1];
                 }
             })
         }

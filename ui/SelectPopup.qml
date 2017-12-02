@@ -10,6 +10,7 @@ Rectangle {
     height: parent.height
     color: "#80000000"
     visible: true
+    z: 999999
 
     // When an option is selected
     signal selected(string nameSelected)

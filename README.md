@@ -23,3 +23,6 @@ The following icons are not made by myself and according to some license, here t
 - icons/browser/konqueror.svg: Konqueror icon by the KDE e.V
 - icons/browser/midori.svg: Mirodi icon by Christian Dywan & Nancy Runge of the Midori project
 - icons/browser/qupzilla.png: QupZilla icon by David Rosca and the QupZilla Community / Adrien Vigneron and Elio Qoshi
+- icons/email/evolution.svg: Evolution mail client by The GNOME Foundation
+- icons/email/kmail.svg: KMail part of Kontact by the KDE Team
+- icons/email/thunderbird.png: Thunderbird email client by the Mozilla foundation

@@ -20,5 +20,8 @@
         <file>icons/browser/midori.svg</file>
         <file>icons/browser/chromium.png</file>
         <file>icons/browser/qupzilla.png</file>
+        <file>icons/email/evolution.svg</file>
+        <file>icons/email/kmail.svg</file>
+        <file>icons/email/thunderbird.png</file>
     </qresource>
 </RCC>
