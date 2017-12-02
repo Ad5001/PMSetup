@@ -15,3 +15,11 @@ There are a few dependencies that you may need to install before loading this ap
 
 ## Try the application
 You can build the application by launching the "debug.sh" script on the root of the repo or download the latest release.
+
+## Icons
+The following icons are not made by myself and according to some license, here they are repertoried with their author(s)
+- icons/browser/firefox.svg: Firefox icon by the Mozilla foundation
+- icons/browser/chromium.png: Chromium icon by the Chromium project
+- icons/browser/konqueror.svg: Konqueror icon by the KDE e.V
+- icons/browser/midori.svg: Mirodi icon by Christian Dywan & Nancy Runge of the Midori project
+- icons/browser/qupzilla.png: QupZilla icon by David Rosca and the QupZilla Community / Adrien Vigneron and Elio Qoshi

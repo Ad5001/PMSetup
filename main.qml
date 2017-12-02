@@ -18,7 +18,7 @@ ApplicationWindow {
     id: mainWindow
     visible: true
     width: Screen.desktopAvailableWidth
-    height: Screen.desktopAvailableHeight
+    height: Screen.desktopAvailableHeight - 100
     x: 0
     y: 0
     title: qsTr("Plasma Mobile Setup")
@@ -39,7 +39,7 @@ ApplicationWindow {
             id: headerImage
             sourceSize.width: 40;
             sourceSize.height: 40;
-            source: "/usr/share/icons/breeze/actions/24/draw-star.svg"
+            source: "file:///usr/share/icons/breeze/actions/24/draw-star.svg"
         }
         Text {
             anchors.left: parent.left

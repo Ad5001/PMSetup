@@ -1,6 +1,7 @@
 import QtQuick 2.7
 import QtQuick.Controls 2.2
 import QtGraphicalEffects 1.0
+import "qrc:/ui" as UI
 
 // Background
 Rectangle {
@@ -60,7 +61,7 @@ Rectangle {
             // Showing button list 
             Component {
                 id: buttonListShow
-                Button {
+                UI.Button {
                     width: (parent.width * 0.75) - 40
                     anchors.horizontalCenter: parent.horizontalCenter
                     font.pixelSize: 15
@@ -73,8 +74,18 @@ Rectangle {
                     }
 
                     contentItem: Text {
-                        text: qsTr(title)
+                        Image {
+                            anchors.left: parent.left
+                            anchors.leftMargin: 16
+                            source: icon
+                            sourceSize.width: 24
+                            sourceSize.height: 24
+                        }
+                        id: browserName
                         verticalAlignment: Text.AlignVCenter
+                        text: "         " + title
+                        font.pixelSize: 18
+
                     }
 
                 }
@@ -99,7 +110,7 @@ Rectangle {
         id: buttonsList
         Component.onCompleted: function(){
             root.contents.forEach(function(elem){
-                buttonsList.append({"title": elem[0], "selectionId": elem[1]})
+                buttonsList.append({"title": elem[0], "selectionId": elem[1], "icon": elem[2]})
                 
             })
         }

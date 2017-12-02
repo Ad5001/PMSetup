@@ -14,5 +14,11 @@
         <file>ui/Progress/ProgressLink.qml</file>
 
         <file>js/pages.js</file>
+
+        <file>icons/browser/firefox.svg</file>
+        <file>icons/browser/konqueror.svg</file>
+        <file>icons/browser/midori.svg</file>
+        <file>icons/browser/chromium.png</file>
+        <file>icons/browser/qupzilla.png</file>
     </qresource>
 </RCC>

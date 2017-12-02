@@ -21,39 +21,42 @@ Rectangle {
         [
             "Firefox Web Browser",
             "/usr/bin/firefox",
-            "",
+            "qrc:/icons/browser/firefox.svg",
             "apt",
             "firefox"
         ],
         [
             "Chromium Web Browser",
             "/usr/bin/chromium-browser",
-            "",
+            "qrc:/icons/browser/chromium.png",
             "apt",
             "chromium-browser"
         ],
         [
             "Konqueror",
             "/usr/bin/konqueror",
-            "",
+            "qrc:/icons/browser/konqueror.svg",
             "apt",
             "konqueror"
         ],
         [
             "Midori",
             "/snap/bin/midori",
-            "",
+            "qrc:/icons/browser/midori.svg",
             "snap",
             "midori"
         ],
         [
             "QupZilla (changing name)",
             "/usr/bin/qupzilla",
-            "",
+            "qrc:/icons/browser/qupzilla.png",
             "apt",
             "qupzilla"
         ],
     ]
+
+    property var selectedBrowser: "/usr/bin/firefox"
+    
     
 
 
@@ -92,14 +95,23 @@ Rectangle {
             anchors.leftMargin: 120
             
             contentItem: Text {
+                Image {
+                    id: browserIcon
+                    anchors.left: parent.left
+                    anchors.leftMargin: 4
+                    source: "qrc:/icons/browser/firefox.svg"
+                    sourceSize.width: 24;
+                    sourceSize.height: 24;
+                }
+                id: browserName
                 verticalAlignment: Text.AlignVCenter
-                text: "Tap to choose"
+                text: "       Firefox Web Browser"
                 font.pixelSize: 18
+                
             }
             onClicked: function(){
                 popupBrowsers.opacity = 1
             }
-            
         }
     }
 
@@ -112,7 +124,9 @@ Rectangle {
         onSelected: function(selection){
             root.browsers.forEach(function(elem){
                 if(elem[1] == selection){
-                    defaultBrowserButton.contentItem.text = elem[0];
+                    browserName.text = "       " + elem[0];
+                    browserIcon.source = elem[2];
+                    root.selectedBrowser = elem[1];
                 }
             })
         }
