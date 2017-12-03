@@ -26,3 +26,4 @@ The following icons are not made by myself and according to some license, here t
 - icons/email/evolution.svg: Evolution mail client by The GNOME Foundation
 - icons/email/kmail.svg: KMail part of Kontact by the KDE Team
 - icons/email/thunderbird.png: Thunderbird email client by the Mozilla foundation
+- icons/music/rhythmbox.svg: Rhytmbox icon by the Rhythmbox Developers (GNOME Team)

@@ -168,11 +168,28 @@ ApplicationWindow {
         id: defaultAppsPage
         visible: false
         z: -1;
+        onInstallationStarted: function(proc){
+            defaultAppsInstalling.proc = proc;
+            defaultAppsInstalling.initialize()
+        }
+    }
+
+    Page.DefaultAppsInstalling {
+        property string stepName: "Default applications"
+        property string stepIcon: "/usr/share/icons/breeze/actions/24/gtk-execute.svg"
+        property int stepId: 2
+        color: "#fcfcfc"
+        id: defaultAppsInstalling
+        anchors.fill: parent
+        visible: false
+        z: -1;
     }
 
 
     function startupFunction() {
-        PageSwitcher.init({start: startPage, pin: setupPinPage, pin2: verifyPinPage, pin3: incorrectPinPage, defaultApps: defaultAppsPage}, startPage, mainWindow.header);
+        PageSwitcher.init(
+            {start: startPage, pin: setupPinPage, pin2: verifyPinPage, pin3: incorrectPinPage, defaultApps: defaultAppsPage, defaultAppsInstall: defaultAppsInstalling}
+        , startPage, mainWindow.header);
     }
     Component.onCompleted: startupFunction();
 }

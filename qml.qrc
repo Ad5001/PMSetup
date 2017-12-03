@@ -23,5 +23,6 @@
         <file>icons/email/evolution.svg</file>
         <file>icons/email/kmail.svg</file>
         <file>icons/email/thunderbird.png</file>
+        <file>icons/music/rhythmbox.svg</file>
     </qresource>
 </RCC>

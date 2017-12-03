@@ -59,6 +59,7 @@ Rectangle {
         activateColor: "#bdc3c7"
         anchors.top: parent.top
         anchors.topMargin: parent.height - 70
+        font.pixelSize: 21
         onClicked: function(){
             root.switchPage(1);
         }
