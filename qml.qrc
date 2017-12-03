@@ -6,6 +6,7 @@
         <file>pages/VerifyPin.qml</file>
         <file>pages/IncorrectPin.qml</file>
         <file>pages/DefaultApps.qml</file>
+        <file>pages/DefaultAppsInstalling.qml</file>
 
         <file>ui/SelectPopup.qml</file>
         <file>ui/Button.qml</file>
@@ -17,7 +18,6 @@
 
         <file>icons/browser/firefox.svg</file>
         <file>icons/browser/konqueror.svg</file>
-        <file>icons/browser/midori.svg</file>
         <file>icons/browser/chromium.png</file>
         <file>icons/browser/qupzilla.png</file>
         <file>icons/email/evolution.svg</file>

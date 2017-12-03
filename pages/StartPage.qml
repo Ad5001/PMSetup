@@ -70,8 +70,8 @@ Rectangle {
             verticalAlignment: Text.AlignVCenter
             SequentialAnimation on color {
                 loops: Animation.Infinite
-                ColorAnimation { from: "#3daee9"; to: "#FFFFFF"; duration: 3000; easing.type: Easing.InOutQuad }
-                ColorAnimation { from: "#FFFFFF"; to: "#3daee9"; duration: 3000; easing.type: Easing.InOutQuad }
+                ColorAnimation { from: "#3daee9"; to: "#FFFFFF"; duration: 1000; easing.type: Easing.InOutQuad }
+                ColorAnimation { from: "#FFFFFF"; to: "#3daee9"; duration: 1000; easing.type: Easing.InOutQuad }
             }
         }        
 

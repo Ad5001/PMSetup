@@ -11,9 +11,13 @@ Rectangle {
     id: root
 
     
-    property var passcode = "unknown"; // Getting password
+    property var passcode: "unknown"; // Getting password
+    
+    property var console2: console
+    
 
     signal installationStarted(Process proc)
+    signal readyRead()
     signal installationEnded()
     
     
@@ -77,7 +81,7 @@ Rectangle {
             "Cantata",
             "/usr/bin/cantata",
             "file:///usr/share/icons/breeze/apps/48/cantata.svg",
-            "cantana"
+            "cantata"
         ],
         [
             "Rhythmbox",
@@ -300,7 +304,7 @@ Rectangle {
         anchors.topMargin: parent.height - 70
         font.pixelSize: 21
         onClicked: function(){
-
+            installProc.startInstall([selectedBrowser, selectedEmail, selectedMusic])
         }
 
         contentItem: Text {
@@ -309,25 +313,37 @@ Rectangle {
             verticalAlignment: Text.AlignVCenter
             SequentialAnimation on color {
                 loops: Animation.Infinite
-                ColorAnimation { from: "#3daee9"; to: "#FFFFFF"; duration: 3000; easing.type: Easing.InOutQuad }
-                ColorAnimation { from: "#FFFFFF"; to: "#3daee9"; duration: 3000; easing.type: Easing.InOutQuad }
+                ColorAnimation { from: "#3daee9"; to: "#FFFFFF"; duration: 1000; easing.type: Easing.InOutQuad }
+                ColorAnimation { from: "#FFFFFF"; to: "#3daee9"; duration: 1000; easing.type: Easing.InOutQuad }
             }
         }
     }
 
     Process {
         id: installProc
+        
+        property var subprocFinished: false;
+        
+        
         function startInstall(configurations){
             var installs = [];
             configurations.forEach(function(elem){
-                fileExistsProc.start("/usr/bin/sh", ["-c", "(test " + elem[1] + " && echo F) || echo NF"], true);
-                if(fileExistsProc.readAll() == "NF") installs.push(elem[3]); // File not found, install the program
+                // fileExistsProc.start("/usr/bin/sh", ["-c", "\"(test " + elem[1] + " && echo F) || echo NF\""], false);
+                // console.warn(fileExistsProc.readAll().toString());
+                // while(!subprocFinished) console.warn(fileExistsProc.readAll().toString());
+                // if(fileExistsProc.readAll().toString().indexOf("NF") !== -1) installs.push(elem[3]); // File not found, install the program
+                installs.push(elem[3]);
             })
+            console.warn("Installing " + installs.length, installs)
             if(installs.length > 0) {
                 if(root.passcode !== "unknown"){
-                    this.start("/usr/bin/sudo", ["apt", "install", "-y", "--no-install-recommends",, installs.join(" ")], false);
+                    var args = ["apt-get", "install", "-y", "--no-install-recommends"];
+                    configurations.forEach(function(elem){args.push(elem[3])})
+                    this.start("/usr/bin/sudo", args, false);
                 } else {
-                    this.start("/usr/bin/pkexec", ["apt", "install","-y", "--no-install-recommends", installs.join(" ")], false);
+                    var args = ["--user", "root", "apt-get", "install", "-y", "--no-install-recommends"]
+                    configurations.forEach(function(elem){args.push(elem[3])})
+                    this.start("/usr/bin/pkexec", args, false);
                 }
             }
         }
@@ -338,10 +354,14 @@ Rectangle {
             root.installationStarted(installProc)
         }
         onFinished: root.installationEnded()
+        onReadyRead: root.readyRead()
+        onReadyReadStandardOutput: root.readyRead();
     }
 
 
     Process {
         id: fileExistsProc
+        onStarted: console.warn("Yay1", readAll().toString())
+        onReadyRead: console.warn("Yay2", readAll().toString())
     }
 }

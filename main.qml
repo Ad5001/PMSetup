@@ -80,6 +80,7 @@ ApplicationWindow {
             writeToStdin(mainWindow.enteredPin + "\n")
             writeToStdin(mainWindow.enteredPin + "\n")
             waitForFinished();
+            defaultAppsPage.passcode = mainWindow.enteredPin
             PageSwitcher.switchPage("defaultApps")
         }
     }
@@ -139,7 +140,6 @@ ApplicationWindow {
                 PageSwitcher.switchPage("pin3");
             } else { // Next page
                 processSetPin.start("/usr/bin/passwd", [mainWindow.currentUsername], false);
-                processSetPin.readAll();
             }
         }
     }
@@ -170,8 +170,12 @@ ApplicationWindow {
         z: -1;
         onInstallationStarted: function(proc){
             defaultAppsInstalling.proc = proc;
-            defaultAppsInstalling.initialize()
+            PageSwitcher.switchPage("defaultAppsInstall")
         }
+        onInstallationEnded: function(){
+            PageSwitcher.switchPage("end")
+        }
+        onReadyRead: defaultAppsInstalling.onReadyRead();
     }
 
     Page.DefaultAppsInstalling {

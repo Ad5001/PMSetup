@@ -17,7 +17,9 @@ public:
 
         for (int i = 0; i < arguments.length(); i++)
             args << arguments[i].toString();
-
+        qWarning() << program << args.join(" ").toStdString().c_str();
+        QProcess::setEnvironment(QProcess::systemEnvironment());
+        QProcess::setProcessChannelMode(QProcess::MergedChannels);
         QProcess::start(program, args);
         if(waitUntilFinished){
             QProcess::waitForFinished();

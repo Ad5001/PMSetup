@@ -3,13 +3,13 @@ TEMPLATE = app
 QT += qml quick
 CONFIG += c++11
 CONFIG += console
-CONFIG+=qml_debug qt debug console
+CONFIG += qml_debug qt debug console
 
 HEADERS += process.h
 SOURCES += main.cpp 
 
 RESOURCES += qml.qrc
-
+QML_IMPORT_TRACE=1 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
 
