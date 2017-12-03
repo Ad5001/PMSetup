@@ -9,7 +9,7 @@ Rectangle {
     width: parent.width
     height: parent.height
     color: "#80000000"
-    visible: true
+    visible: false
     z: 999999
 
     // When an option is selected
@@ -23,6 +23,7 @@ Rectangle {
         to: 0 
         duration: 400
         easing.type: Easing.InOutQuad
+        onStopped: root.visible = false;
     }
     
 
@@ -69,7 +70,6 @@ Rectangle {
                     flat: true
 
                     onClicked: function(){
-                        // clickedAnimation.running = true
                         root.selected(selectionId)
                         closeAnimation.running = true
                     }

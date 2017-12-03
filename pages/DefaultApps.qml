@@ -136,6 +136,7 @@ Rectangle {
                 
             }
             onClicked: function(){
+                popupBrowsers.visible = true
                 popupBrowsers.opacity = 1
             }
         }
@@ -195,6 +196,7 @@ Rectangle {
             }
             onClicked: function(){
                 popupEmail.opacity = 1
+                popupEmail.visible = true
             }
         }
     }
