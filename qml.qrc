@@ -10,6 +10,7 @@
 
         <file>ui/SelectPopup.qml</file>
         <file>ui/Button.qml</file>
+        <file>ui/Page.qml</file>
         <file>ui/Progress/ProgressBar.qml</file>
         <file>ui/Progress/ProgressBubble.qml</file>
         <file>ui/Progress/ProgressLink.qml</file>

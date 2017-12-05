@@ -17,8 +17,8 @@ ApplicationWindow {
     
     id: mainWindow
     visible: true
-    width: Screen.desktopAvailableWidth
-    height: Screen.desktopAvailableHeight - 100
+    width: Screen.desktopAvailableWidth > Screen.desktopAvailableHeight ? 600 : Screen.desktopAvailableWidth;// Checking for debug desktop
+    height: Screen.desktopAvailableWidth > Screen.desktopAvailableHeight ? 800 : Screen.desktopAvailableHeight - 100; // Checking for debug dektop
     x: 0
     y: 0
     title: qsTr("Plasma Mobile Setup")

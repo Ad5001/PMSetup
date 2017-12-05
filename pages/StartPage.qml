@@ -4,7 +4,7 @@ import QtQuick.Dialogs 1.2
 import Process 1.0
 import "qrc:/ui" as UI
 
-Rectangle {
+UI.Page {
     
     property var selectedLang: "en";
     

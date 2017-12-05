@@ -1,9 +1,9 @@
 import QtQuick 2.7
 import QtQuick.Controls 2.2
 import QtQuick.Dialogs 1.2
+import "qrc:/ui" as UI
 
-
-Rectangle {
+UI.Page {
     width: 360
     height: 360
     id: root

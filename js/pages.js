@@ -12,12 +12,10 @@ function init(pagesArg, selPage, head) {
 
 function switchPage(pageId) {
     // Hide the last page
-    selectedPage.visible = false;
-    selectedPage.z = -1;
+    selectedPage.exit();
     // Show the new page
     selectedPage = pages[pageId];
-    selectedPage.visible = true;
-    selectedPage.z = 1;
+    selectedPage.enter();
     // Show the header
     header.visible = true;
     header.text.text = "Step " + selectedPage.stepId + ". " + selectedPage.stepName

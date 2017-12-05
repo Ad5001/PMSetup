@@ -3,7 +3,7 @@ import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 import "qrc:/ui" as UI
 
-Rectangle {
+UI.Page {
 
     width: 360
     height: 360

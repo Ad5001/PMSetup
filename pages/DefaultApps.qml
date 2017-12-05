@@ -4,7 +4,7 @@ import QtQuick.Layouts 1.3
 import Process 1.0
 import "qrc:/ui" as UI
 
-Rectangle {
+UI.Page {
     
     width: 360
     height: 360
