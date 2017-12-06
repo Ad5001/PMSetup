@@ -77,12 +77,10 @@ Rectangle {
         root.visible = true;
         enterAnimation.start()
         enterAnimation.running = true;
-        console.warn("Entering")
     }
 
     function exit(){
         exitAnimation.start()
         exitAnimation.running = true;
-        console.warn("Exiting")
     }
 }

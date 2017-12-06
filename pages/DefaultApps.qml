@@ -19,6 +19,7 @@ UI.Page {
     signal installationStarted(Process proc)
     signal readyRead()
     signal installationEnded()
+    signal switchPage()
     
     
 
@@ -363,5 +364,33 @@ UI.Page {
         id: fileExistsProc
         onStarted: console.warn("Yay1", readAll().toString())
         onReadyRead: console.warn("Yay2", readAll().toString())
+    }
+
+
+
+    UI.Button {
+        anchors.right: parent.right;
+        anchors.rightMargin: 70
+        flat: true
+        activateColor: "#bdc3c7"
+        anchors.top: parent.top
+        anchors.topMargin: parent.height - 70
+        font.pixelSize: 21
+        onClicked: function(){
+            root.switchPage()
+        }
+
+        contentItem: Text {
+            color: "#000000"
+            text: qsTr("Skip")
+            verticalAlignment: Text.AlignVCenter
+            Image {
+                anchors.top: parent.top
+                anchors.left: parent.right
+                sourceSize.width: 21;
+                sourceSize.height: 21;
+                source: "file:///usr/share/icons/breeze/actions/24/draw-arrow-forward.svg"
+            }
+        }
     }
 }

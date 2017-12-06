@@ -6,7 +6,7 @@ An utility application implementing a GUI to do the default Plasma Mobile Setup 
 ## Features
 - [x] PIN Setup
 - [ ] Language setup
-- [ ] Default applications
+- [x] Default applications
 
 ## Dependencies:
 There are a few dependencies that you may need to install before loading this application:

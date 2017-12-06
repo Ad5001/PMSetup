@@ -176,6 +176,7 @@ ApplicationWindow {
             PageSwitcher.switchPage("end")
         }
         onReadyRead: defaultAppsInstalling.onReadyRead();
+        onSwitchPage: PageSwitcher.switchPage("end")
     }
 
     Page.DefaultAppsInstalling {
@@ -189,10 +190,23 @@ ApplicationWindow {
         z: -1;
     }
 
+    
+    Page.EndPage {
+        property string stepName: "End of setup"
+        property string stepIcon: "/usr/share/icons/breeze/actions/24/checkbox.svg"
+        property int stepId: 2
+        color: "#fcfcfc"
+        id: end
+        anchors.fill: parent
+        visible: false
+        z: -1;
+        onGoBack: PageSwitcher.switchPage("defaultApps");
+    }
+
 
     function startupFunction() {
         PageSwitcher.init(
-            {start: startPage, pin: setupPinPage, pin2: verifyPinPage, pin3: incorrectPinPage, defaultApps: defaultAppsPage, defaultAppsInstall: defaultAppsInstalling}
+            {start: startPage, pin: setupPinPage, pin2: verifyPinPage, pin3: incorrectPinPage, defaultApps: defaultAppsPage, defaultAppsInstall: defaultAppsInstalling, end: end}
         , startPage, mainWindow.header);
     }
     Component.onCompleted: startupFunction();
